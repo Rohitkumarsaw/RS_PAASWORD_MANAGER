@@ -46,6 +46,14 @@ $adminTheme = $_COOKIE['admin_theme'] ?? 'dark';
     .admin-login-box h1 { font-size:1.5rem;margin-bottom:4px; }
     .admin-login-box p { color:var(--text-muted);margin-bottom:24px;font-size:0.875rem; }
     .alert { padding:10px 14px;border-radius:var(--radius-md);margin-bottom:16px;font-size:0.85rem;background:rgba(239,68,68,0.15);color:#f87171; }
+    .admin-login-box .form-input { background:var(--bg-main); }
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px var(--bg-main) inset !important;
+      -webkit-text-fill-color: var(--text-main) !important;
+    }
   </style>
 </head>
 <body>
