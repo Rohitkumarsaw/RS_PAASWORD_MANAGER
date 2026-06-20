@@ -479,7 +479,7 @@ function updateCard() {
 
 function deleteCard(id) {
     if (typeof showConfirmDialog === 'function') {
-        showConfirmDialog('Delete this card?', 'Delete Card', 'Delete', 'Cancel', function() {
+        showConfirmDialog('Move this card to trash? You can restore it later.', 'Delete Card', 'Delete', 'Cancel', function() {
             fetch('api/cards.php?action=delete', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -488,7 +488,7 @@ function deleteCard(id) {
             .then(function(r) { return r.json(); })
             .then(function(result) {
                 if (result.success) {
-                    showToast('Card deleted', 'success');
+                    showToast('Card moved to trash', 'success');
                     loadCards();
                 } else {
                     showToast(result.message || 'Failed to delete', 'error');

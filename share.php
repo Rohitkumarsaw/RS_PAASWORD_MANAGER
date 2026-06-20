@@ -360,7 +360,7 @@ if (empty($token)) {
         <button class="theme-toggle-share" id="shareThemeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
         <div class="brand">
             <div class="brand-icon"><i class="fas fa-shield-halved"></i></div>
-            <div class="brand-text"><span>RS</span> PAASWORD MANAGER</div>
+            <div class="brand-text">RS PAASWORD MANAGER</div>
         </div>
 
         <?php if ($error): ?>
@@ -402,8 +402,8 @@ if (empty($token)) {
             <?php if (!empty($credential['phone'])): ?>
             <div class="field">
                 <label><i class="fas fa-phone" style="margin-right:4px"></i> Mobile Number</label>
-                <div class="value" style="font-family:inherit;font-size:0.95rem">
-                    <span id="sharePhone"><?php echo htmlspecialchars($credential['phone']); ?></span>
+                <div class="value" style="font-family:inherit;font-size:0.95rem;word-break:break-word;overflow-wrap:break-word">
+                    <span id="sharePhone" class="phone-display" style="display:inline"><?php echo htmlspecialchars($credential['phone']); ?></span>
                     <div class="actions">
                         <button onclick="copyText('sharePhone')" title="Copy"><i class="fas fa-copy"></i></button>
                     </div>

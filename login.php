@@ -109,6 +109,11 @@ include 'includes/header.php';
                 <div class="auth-footer">
                     <span>Don't have an account?</span> <a href="register.php">Create one</a>
                 </div>
+                <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border-soft);text-align:center">
+                    <a href="admin/login.php" style="font-size:0.8rem;color:var(--text-muted);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;transition:all 0.2s">
+                        <i class="fas fa-shield-alt" style="font-size:0.7rem"></i> Admin Login
+                    </a>
+                </div>
             </div>
         </div>
     </div>

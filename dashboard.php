@@ -33,6 +33,9 @@ include 'includes/navbar.php';
                     <p>Welcome back, <?php echo sanitizeOutput($user['display_name'] ?: $user['username']); ?></p>
                 </div>
                 <div class="page-actions">
+                    <a href="api/entries.php?action=export_csv" class="btn btn-ghost btn-sm" title="Export CSV"><i class="fas fa-file-csv"></i></a>
+                    <a href="api/entries.php?action=export_html" class="btn btn-ghost btn-sm" title="Export HTML"><i class="fas fa-file-code"></i></a>
+                    <a href="api/entries.php?action=export_pdf" class="btn btn-ghost btn-sm" title="Export PDF"><i class="fas fa-file-pdf"></i></a>
                     <a href="vault.php" class="btn btn-secondary"><i class="fas fa-globe"></i> My Vault</a>
                     <button class="btn btn-primary" onclick="window.location.href='vault.php'"><i class="fas fa-key"></i> Add Password</button>
                 </div>
@@ -80,7 +83,7 @@ include 'includes/navbar.php';
                         <div style="display:flex;flex-direction:column;gap:6px">
                             <?php foreach (array_slice($websites, 0, 6) as $w): ?>
                                 <a href="vault.php" style="display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--radius-md);transition:var(--transition);text-decoration:none;color:var(--text-main)">
-                                    <i class="fas fa-globe" style="color:var(--primary);font-size:1rem;width:20px;text-align:center"></i>
+                                    <?php $favicon = getFaviconUrl($w['website_url']); if ($favicon): ?><img src="<?php echo $favicon; ?>" alt="" style="width:20px;height:20px;border-radius:4px;flex-shrink:0" onerror="this.outerHTML='<i class=\'fas fa-globe\' style=\'color:var(--primary);font-size:1rem;width:20px;text-align:center\'></i>'"><?php else: ?><i class="fas fa-globe" style="color:var(--primary);font-size:1rem;width:20px;text-align:center"></i><?php endif; ?>
                                     <div style="flex:1;min-width:0">
                                         <div style="font-weight:500;font-size:0.875rem"><?php echo sanitizeOutput($w['website_name']); ?></div>
                                         <div style="font-size:0.75rem;color:var(--text-muted)"><?php echo $w['cred_count']; ?> credential<?php echo $w['cred_count'] !== 1 ? 's' : ''; ?></div>

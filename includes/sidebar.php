@@ -8,7 +8,7 @@ $sidebarEntries = [
     ['icon' => 'fas fa-star', 'label' => 'Favorites', 'link' => 'vault.php?filter=favorites', 'active' => strpos($_SERVER['QUERY_STRING'] ?? '', 'favorites') !== false],
     ['icon' => 'fa-brands fa-google', 'label' => 'Google Sign-In', 'link' => 'google-signin.php', 'active' => basename($_SERVER['PHP_SELF']) === 'google-signin.php'],
     ['icon' => 'fas fa-trash',         'label' => 'Trash',            'link' => 'trash.php',                             'active' => basename($_SERVER['PHP_SELF']) === 'trash.php'],
-    ['icon' => 'fas fa-history',       'label' => 'Activity Log',     'link' => 'dashboard.php?view=activity',           'active' => strpos($_SERVER['QUERY_STRING'] ?? '', 'activity') !== false],
+    ['icon' => 'fas fa-history',       'label' => 'Activity Log',     'link' => 'activity.php',                          'active' => basename($_SERVER['PHP_SELF']) === 'activity.php'],
     ['icon' => 'fas fa-cog', 'label' => 'Settings', 'link' => 'settings.php', 'active' => basename($_SERVER['PHP_SELF']) === 'settings.php'],
 ];
 ?>
@@ -19,7 +19,7 @@ $sidebarEntries = [
                 <div class="brand-icon">
                     <i class="fas fa-shield-halved"></i>
                 </div>
-                <span>RS PAASWORD MANAGER</span>
+                <span class="brand-text">RS PAASWORD MANAGER</span>
             </a>
         </div>
         <nav class="sidebar-nav">
@@ -46,6 +46,11 @@ $sidebarEntries = [
                     <span class="sidebar-user-email"><?php echo $user ? sanitizeOutput($user['email']) : ''; ?></span>
                 </div>
             </div>
+            <?php if ($user && $user['is_admin']): ?>
+            <a href="admin/index.php" class="sidebar-logout" style="border-top:1px solid var(--border-soft);margin-top:4px;padding-top:8px">
+                <i class="fas fa-shield-alt"></i> Admin Panel
+            </a>
+            <?php endif; ?>
             <a href="logout.php" class="sidebar-logout">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </a>

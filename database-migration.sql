@@ -93,3 +93,24 @@ CREATE TABLE IF NOT EXISTS cards (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     INDEX idx_user_id (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Migration 9: Add admin & phone support to users
+ALTER TABLE users ADD COLUMN is_admin TINYINT(1) DEFAULT 0 AFTER encryption_iv;
+ALTER TABLE users ADD COLUMN phone VARCHAR(50) DEFAULT NULL AFTER display_name;
+
+-- Migration 10: Create OAuth accounts table
+CREATE TABLE IF NOT EXISTS oauth_accounts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    website_name VARCHAR(255) NOT NULL,
+    website_url VARCHAR(500) DEFAULT NULL,
+    email VARCHAR(255) NOT NULL,
+    provider VARCHAR(100) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user_id (user_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Migration 11: Add soft delete to cards
+ALTER TABLE cards ADD COLUMN deleted_at TIMESTAMP NULL DEFAULT NULL AFTER updated_at;
+CREATE INDEX idx_cards_deleted ON cards(deleted_at);

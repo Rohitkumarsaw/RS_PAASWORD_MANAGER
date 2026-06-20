@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/default-favicon.svg">
+    <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>🔐</text></svg>">
     <script>(function(){var t=localStorage.getItem('pm_theme')||'dark';document.documentElement.setAttribute('data-theme',t);var a=document.querySelector('meta[name=theme-color]'),b=document.querySelector('meta[name=color-scheme]');if(a){a.content=t==='dark'?'rgb(10,14,28)':'rgb(248,250,252)'}if(b){b.content=t};var c=document.getElementById('themeToggle');if(c){var i=c.querySelector('i');if(i){i.className=t==='dark'?'fas fa-moon':'fas fa-sun'}}})();</script>
 </head>
 <body<?php echo isset($bodyClass) ? ' class="' . sanitizeOutput($bodyClass) . '"' : ''; ?>>

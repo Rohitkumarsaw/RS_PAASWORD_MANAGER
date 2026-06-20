@@ -29,7 +29,7 @@ function getCurrentUser(): ?array {
     }
     try {
         $pdo = getDbConnection();
-        $stmt = $pdo->prepare('SELECT id, username, email, display_name, avatar_url, theme_preference, items_per_page, created_at FROM users WHERE id = :id');
+        $stmt = $pdo->prepare('SELECT id, username, email, display_name, phone, avatar_url, theme_preference, items_per_page, is_admin, created_at FROM users WHERE id = :id');
         $stmt->execute([':id' => getCurrentUserId()]);
         return $stmt->fetch() ?: null;
     } catch (PDOException $e) {

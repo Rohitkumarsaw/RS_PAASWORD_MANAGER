@@ -327,4 +327,12 @@ function getTrashedCredentials(int $userId): array {
     }
 }
 
+function getFaviconUrl(string $url = ''): string {
+    if (empty($url)) return '';
+    $domain = parse_url($url, PHP_URL_HOST);
+    if (empty($domain)) $domain = $url;
+    $domain = preg_replace('/^www\./', '', $domain);
+    return 'https://www.google.com/s2/favicons?domain=' . urlencode($domain) . '&sz=64';
+}
+
 

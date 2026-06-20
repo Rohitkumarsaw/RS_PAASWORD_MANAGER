@@ -72,10 +72,11 @@ function handleGetProfile(int $userId): void {
 
 function handleUpdateProfile(int $userId, array $input): void {
     $displayName = trim($input['display_name'] ?? '');
+    $phone = trim($input['phone'] ?? '');
 
     $pdo = getDbConnection();
-    $stmt = $pdo->prepare('UPDATE users SET display_name = :name WHERE id = :id');
-    $stmt->execute([':name' => $displayName, ':id' => $userId]);
+    $stmt = $pdo->prepare('UPDATE users SET display_name = :name, phone = :phone WHERE id = :id');
+    $stmt->execute([':name' => $displayName, ':phone' => $phone ?: null, ':id' => $userId]);
 
     logActivity($userId, 'Profile updated', 'Display name changed');
     echo json_encode(['success' => true, 'message' => 'Profile updated successfully']);

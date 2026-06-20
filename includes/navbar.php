@@ -40,6 +40,12 @@ $currentUser = getCurrentUser();
                     <a href="settings.php" class="dropdown-item">
                         <i class="fas fa-cog"></i> Settings
                     </a>
+                    <?php if ($currentUser && $currentUser['is_admin']): ?>
+                    <hr class="dropdown-divider">
+                    <a href="admin/index.php" class="dropdown-item">
+                        <i class="fas fa-shield-alt"></i> Admin Panel
+                    </a>
+                    <?php endif; ?>
                     <hr class="dropdown-divider">
                     <a href="logout.php" class="dropdown-item dropdown-item-danger">
                         <i class="fas fa-sign-out-alt"></i> Logout

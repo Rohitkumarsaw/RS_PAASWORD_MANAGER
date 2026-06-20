@@ -79,6 +79,10 @@ include 'includes/navbar.php';
                             <input type="text" id="display_name" name="display_name" class="form-input" value="<?php echo sanitizeOutput($user['display_name'] ?? ''); ?>" placeholder="Your display name">
                         </div>
                         <div class="form-group">
+                            <label class="form-label" for="phone">Phone Number <span class="form-hint" style="display:inline;font-size:0.75rem">(optional)</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-input" value="<?php echo sanitizeOutput($user['phone'] ?? ''); ?>" placeholder="+1 (555) 123-4567">
+                        </div>
+                        <div class="form-group">
                             <label class="form-label" for="email">Email</label>
                             <input type="email" id="email" class="form-input" value="<?php echo sanitizeOutput($user['email']); ?>" disabled>
                             <div class="form-hint">Email cannot be changed</div>
@@ -102,7 +106,8 @@ include 'includes/navbar.php';
 document.getElementById('profileForm').addEventListener('submit', function(e) {
     e.preventDefault();
     var data = {
-        display_name: document.getElementById('display_name').value
+        display_name: document.getElementById('display_name').value,
+        phone: document.getElementById('phone').value
     };
     fetch('api/settings.php?action=update_profile', {
         method: 'POST',

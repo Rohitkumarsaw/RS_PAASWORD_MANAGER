@@ -67,6 +67,9 @@ include 'includes/navbar.php';
                 </div>
                                 <div class="page-actions">
                     <button class="btn btn-ghost" onclick="openPwGenerator()"><i class="fas fa-dice"></i> Generate</button>
+                    <a href="api/entries.php?action=export_csv" class="btn btn-ghost btn-sm" title="Export CSV"><i class="fas fa-file-csv"></i></a>
+                    <a href="api/entries.php?action=export_html" class="btn btn-ghost btn-sm" title="Export HTML"><i class="fas fa-file-code"></i></a>
+                    <a href="api/entries.php?action=export_pdf" class="btn btn-ghost btn-sm" title="Export PDF"><i class="fas fa-file-pdf"></i></a>
                     <button class="btn btn-primary" onclick="openAddPasswordModal()"><i class="fas fa-key"></i> Add Password</button>
                 </div>
             </div>
@@ -107,7 +110,7 @@ include 'includes/navbar.php';
                         <div class="website-group-card">
                             <div class="website-group-header">
                                 <div style="display:flex;align-items:center;gap:14px;flex:1;min-width:0">
-                                    <div class="website-icon"><i class="fas fa-globe"></i></div>
+                                    <div class="website-icon"><?php $favicon = getFaviconUrl($w['website_url']); if ($favicon): ?><img src="<?php echo $favicon; ?>" alt="" style="width:22px;height:22px;border-radius:4px" onerror="this.parentNode.innerHTML='<i class=\'fas fa-globe\'></i>'"><?php else: ?><i class="fas fa-globe"></i><?php endif; ?></div>
                                     <div style="flex:1;min-width:0">
                                         <div class="website-name"><?php echo sanitizeOutput($w['website_name']); ?></div>
                                         <div class="website-meta">
@@ -145,7 +148,7 @@ include 'includes/navbar.php';
                                                     <div style="width:3px;height:28px;border-radius:2px;background:<?php echo $c['is_favorite'] ? 'rgb(251,191,36)' : 'var(--primary)'; ?>;flex-shrink:0"></div>
                                                     <div style="flex:1;min-width:0">
                                                         <div class="cred-title"><?php echo sanitizeOutput($c['title']); ?></div>
-                                                        <div class="cred-username"><?php echo sanitizeOutput($c['username']); ?> <?php if (!empty($c['phone_decrypted'])): ?>&middot; <span style="color:var(--info)"><i class="fas fa-phone"></i> <?php echo sanitizeOutput($c['phone_decrypted']); ?></span><?php endif; ?></div>
+                                                        <div class="cred-username"><?php echo sanitizeOutput($c['username']); ?> <?php if (!empty($c['phone_decrypted'])): ?>&middot; <span class="phone-display" style="color:var(--info)"><i class="fas fa-phone"></i> <?php echo sanitizeOutput($c['phone_decrypted']); ?></span><?php endif; ?></div>
                                                     </div>
                                                 </div>
                                                 <div class="cred-pw-area">

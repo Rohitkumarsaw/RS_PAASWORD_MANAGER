@@ -19,6 +19,7 @@
     initBulkActions();
     initTabNavigation();
     initAutoLogout();
+    initResponsive();
   });
 
   function initTheme() {
@@ -55,14 +56,21 @@
     const sidebar = document.getElementById('sidebar');
     const overlay = document.getElementById('sidebarOverlay');
     if (!toggle || !sidebar) return;
+    let scrollPos = 0;
     toggle.addEventListener('click', function() {
+      const opening = !sidebar.classList.contains('open');
+      if (opening) scrollPos = window.scrollY;
       sidebar.classList.toggle('open');
       if (overlay) overlay.classList.toggle('active');
+      document.body.classList.toggle('sidebar-open');
+      if (!opening) window.scrollTo(0, scrollPos);
     });
     if (overlay) {
       overlay.addEventListener('click', function() {
         sidebar.classList.remove('open');
         overlay.classList.remove('active');
+        document.body.classList.remove('sidebar-open');
+        window.scrollTo(0, scrollPos);
       });
     }
     const main = document.querySelector('.main-content');
@@ -71,6 +79,8 @@
         if (window.innerWidth > 992) {
           sidebar.classList.remove('open');
           if (overlay) overlay.classList.remove('active');
+          document.body.classList.remove('sidebar-open');
+          window.scrollTo(0, scrollPos);
         }
       });
     }
@@ -518,6 +528,29 @@
     document.addEventListener('keydown', resetTimer);
     document.addEventListener('click', resetTimer);
     resetTimer();
+  }
+
+  function initResponsive() {
+    // Responsive table wrapping
+    document.querySelectorAll('table:not(.health-table):not(.history-table):not(.admin-page .table)').forEach(function(t) {
+      if (t.parentElement && !t.parentElement.classList.contains('table-container') && !t.parentElement.classList.contains('table-wrapper')) {
+        var wrap = document.createElement('div');
+        wrap.className = 'table-container';
+        t.parentNode.insertBefore(wrap, t);
+        wrap.appendChild(t);
+      }
+    });
+    // Handle window resize
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        var w = window.innerWidth;
+        document.documentElement.style.setProperty('--vw', w + 'px');
+      }, 150);
+    });
+    // Set initial viewport width
+    document.documentElement.style.setProperty('--vw', window.innerWidth + 'px');
   }
 
   function escapeHtml(str) {
