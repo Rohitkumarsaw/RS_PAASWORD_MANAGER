@@ -29,8 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 $pageTitle = 'Admin Login';
+$adminTheme = $_COOKIE['admin_theme'] ?? 'dark';
 ?><!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="<?php echo $adminTheme; ?>">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,8 +49,16 @@ $pageTitle = 'Admin Login';
   </style>
 </head>
 <body>
+  <div style="position:fixed;top:16px;right:16px;z-index:999">
+    <button id="adminLoginThemeToggle" class="nav-icon-btn" style="background:var(--card-bg);border:1px solid var(--border-soft);border-radius:var(--radius-md);padding:8px 12px;cursor:pointer;color:var(--text-muted);font-size:1.1rem">
+      <i class="fas <?php echo $adminTheme === 'dark' ? 'fa-sun' : 'fa-moon'; ?>"></i>
+    </button>
+  </div>
   <div class="admin-login-box">
-    <h1><i class="fas fa-shield-alt" style="color:var(--accent)"></i> Admin Panel</h1>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px">
+      <i class="fas fa-shield-alt" style="font-size:1.5rem;color:var(--accent)"></i>
+      <h1 style="margin:0;font-size:1.5rem">Admin Panel</h1>
+    </div>
     <p>Sign in with your admin account</p>
     <?php if ($error): ?><div class="alert"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
     <form method="post">
@@ -67,5 +76,20 @@ $pageTitle = 'Admin Login';
       <a href="../login.php">Back to User Login</a>
     </div>
   </div>
+<script>
+(function(){
+  var t = document.getElementById('adminLoginThemeToggle');
+  if (!t) return;
+  var h = document.documentElement;
+  t.onclick = function() {
+    var cur = h.getAttribute('data-theme') || 'dark';
+    var next = cur === 'dark' ? 'light' : 'dark';
+    h.setAttribute('data-theme', next);
+    var i = t.querySelector('i');
+    i.className = next === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    document.cookie = 'admin_theme=' + next + ';path=/;max-age=31536000';
+  };
+})();
+</script>
 </body>
 </html>

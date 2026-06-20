@@ -930,7 +930,7 @@ kbd {
   padding: 11px 14px;
   border: 1.5px solid var(--border-soft);
   border-radius: 12px;
-  background: var(--bg-card);
+  background: var(--card-bg);
   color: var(--text-main);
   font-size: 0.9rem;
   font-family: inherit;
