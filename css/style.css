@@ -3068,9 +3068,12 @@ body.sidebar-open { overflow:hidden; }
 .admin-page .table { width:100%;border-collapse:collapse;font-size:0.85rem; }
 .admin-page .table th,.admin-page .table td { text-align:left;padding:10px 12px;border-bottom:1px solid var(--border-soft);word-break:break-word; }
 .admin-page .table th { font-weight:600;color:var(--text-muted);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.5px; }
-.admin-page .badge { display:inline-block;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:600; }
-.admin-page .badge-success { background:rgba(34,197,94,0.15);color:#4ade80; }
-.admin-page .badge-secondary { background:rgba(148,163,184,0.15);color:#94a3b8; }
+.admin-page .badge { display:inline-block;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:600;border:1px solid transparent; }
+.admin-page .badge-success { background:rgba(34,197,94,0.15);color:#4ade80;border-color:rgba(34,197,94,0.3); }
+.admin-page .badge-danger { background:rgba(239,68,68,0.15);color:#f87171;border-color:rgba(239,68,68,0.3); }
+.admin-page .badge-info { background:rgba(59,130,246,0.15);color:#60a5fa;border-color:rgba(59,130,246,0.3); }
+.admin-page .badge-secondary { background:rgba(148,163,184,0.15);color:#94a3b8;border-color:rgba(148,163,184,0.3); }
+.admin-page .badge-warning { background:rgba(251,191,36,0.15);color:#fbbf24;border-color:rgba(251,191,36,0.3); }
 .admin-page code { background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;font-size:0.8rem; }
 .admin-page .text-center { text-align:center;color:var(--text-muted);padding:24px; }
 
